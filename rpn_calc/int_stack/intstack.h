@@ -1,10 +1,13 @@
 #include <iostream>
 class IntStack {
 public:
+
+  // vr: il manque le traitement d'erreur en cas de taille négative ou nulle
   IntStack (int s): size(s), top (0), tab (new int [size]) {
   }
 
   void push (int e) {
+    // vr: utilise la fonction is_full
     if (top == size){
         throw "Stack full";
     }
@@ -15,6 +18,7 @@ public:
   }
 
   int pop () {
+    // vr: utilise la fonction is_empty
     if (top == 0){
         throw "cannot pop an empty stack";
     }
@@ -30,6 +34,8 @@ public:
     std::cout << '[' << std::endl;
   }
 
+  // vr: en plus court le code de cette fonction s'écrit
+  //  return top == size;
   bool is_full(){
     if (top < size){
         return false;
@@ -37,6 +43,8 @@ public:
     return true;
     }
 
+  // vr: en plus court le code de cette fonction s'écrit
+  //  return top == 0;
     bool is_empty(){
         if (top == 0){
             return true;
