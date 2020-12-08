@@ -2,11 +2,15 @@
 class IntStack {
 public:
   IntStack (int s): size(s), top (0), tab (new int [size]) {
+  if (size <= 0){
+    throw "nul or negative size";
+  }
   }
 
+
   void push (int e) {
-    if (top == size){
-        throw "Stack full";
+    if (is_full()){
+        throw "Stack size limit reached";
     }
     else{
         tab[top] = e;
@@ -15,7 +19,7 @@ public:
   }
 
   int pop () {
-    if (top == 0){
+    if (is_empty()){
         throw "cannot pop an empty stack";
     }
     top = top-1;
@@ -31,17 +35,11 @@ public:
   }
 
   bool is_full(){
-    if (top < size){
-        return false;
-    }
-    return true;
+    return top == size;
     }
 
-    bool is_empty(){
-        if (top == 0){
-            return true;
-        }
-        return false;
+  bool is_empty(){
+      return top == 0;
     }
 
   ~IntStack () {

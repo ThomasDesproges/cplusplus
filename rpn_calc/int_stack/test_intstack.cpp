@@ -10,9 +10,26 @@ int main(){
     }
     stack.print();
     stack.pop();
-    stack.push(10);
-    stack.push(10);
-    std::cout << stack.is_full() << std::endl;
-    stack.is_full();
-    stack.print();
+    stack.push(20);
+    try{
+        stack.push(10);
+    }
+    catch(char const* e){
+        std::cout << "exception error : " << e << std::endl;
+    }
+    for(int i =0;i<5;i++){
+        stack.pop();
+    }
+    try{
+        stack.pop();
+    }
+    catch(char const* e){
+        std::cout << "exception error : " << e << std::endl;
+    }
+    try{
+        IntStack f_stack(0);
+    }
+    catch(const char* e){
+        std::cout << "exception error : " << e<<std::endl;
+    }
 }
