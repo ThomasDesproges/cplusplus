@@ -2,6 +2,9 @@ CXX=g++
 CXXFLAGS=-Wall -ggdb -I include
 AR=/usr/bin/ar -r 
 
+# v: forcez le rm
+RM = rm -f
+
 src := $(wildcard src/*.cpp) # Génère la liste des fichier .cpp contenu dans le dossier src
 obj := $(subst src, build, $(src:.cpp=.o)) #Génère la liste des fichiers .o (n'existe pas encore mais prend juste les titres des cpp)
 
@@ -25,6 +28,6 @@ build:
 	mkdir -p $@
 
 clean: 
-	rm morse
-	rm libmorse.a
-	rm -r build
+	$(RM) morse
+	$(RM) libmorse.a
+	$(RM) -r build

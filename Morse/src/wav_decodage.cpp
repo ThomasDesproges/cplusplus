@@ -4,7 +4,7 @@
 #include <cstdint>
 #include"wav_decodage.h"
 
-#pragma once
+// vr: pas de pragma once dans un .cpp ! #pragma once
 
 using std::cin;
 using std::cout;
@@ -58,21 +58,25 @@ int* decoder(const char* nom_du_fichier)
     if (wavFile == nullptr)
     {
         fprintf(stderr, "Unable to open wave file: %s\n", filePath);
-        int* rip;
+	// vr: vous déclarez une variable rip sans l'initialiser et vous la retournez tout de suite !
+        int* rip; 
         return rip;
     }
 
     //Read the header
     size_t bytesRead = fread(&wavHeader, 1, headerSize, wavFile);
     cout << "Header Read " << bytesRead << " bytes." << endl;
+    // vr: faudra faire un delete [] de valeur plus haut (utilisez des std¨string pour échanger correctement des textes 
     int* valeur = new int[10000];
     if (bytesRead > 0)
     {
         //Read the data
         uint16_t bytesPerSample = wavHeader.bitsPerSample / 8;      //Number     of bytes per sample
+	// vr: vous n'utilisez pas numSamples ?
         uint64_t numSamples = wavHeader.ChunkSize / bytesPerSample; //How many samples are in the wav file?
         static const uint16_t BUFFER_SIZE = 4096;
         int8_t* buffer = new int8_t[BUFFER_SIZE];
+	// vr: vous n'utilisez pas tampon, vous faites new et pas delete
         int* tampon = new int;
         int k = 0;
         fseek(wavFile, wavHeader.bytesPerSec*duree_point*0.001/2,SEEK_CUR);

@@ -8,7 +8,7 @@
 
 using namespace std;
 
-
+// vr: ne mettez pas de code directement dans le main appelez des fonctions ou des méthodes (ici de CodageMorse) que vour mettez dans des fichiers relatifs au morse (vous pourrez ainsi réutiliser votre code dans d'autres contextes)
 int main(){
     CodageMorse morse(100,300);
     int volonte = 0;

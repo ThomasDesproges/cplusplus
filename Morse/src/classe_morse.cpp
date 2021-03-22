@@ -1,3 +1,4 @@
+/*
 #include<iostream>
 #include<string>
 #include<fstream>
@@ -14,7 +15,8 @@ class CodageMorse{
     } 
 
     void Coder_en_morse(){
-        int volonte, maniere = 0; 0;
+      // vr: int volonte, maniere = 0; 0;
+      int volonte =0, maniere = 0;
         std::cout << "Voulez vous :\nEcrire à la main ?(1)\nEncoder un fichier ?(2)" << std::endl;
         std::cin >> maniere;
         if (maniere == 1){
@@ -28,6 +30,8 @@ class CodageMorse{
                 texte[k] = c_texte[k];
                 k++;
             }
+	    // vr: rajoutez la fin de str ?
+	    texte[k] = '\0';
             }
         else if (maniere == 2){
             string nom_fichier_a_ouvrir;
@@ -46,12 +50,14 @@ class CodageMorse{
                     texte[k] = c_texte[k];
                     k++;
                 }
+		// vr: rajoutez la fin de str ?
+		texte[k] = '\0';
             }
             else{
                 std::cout << "impossible d'ouvrir le fichier" << std::endl;
             }
         }
-        int i =0;
+        int i =0; // vr: pourquoi ce i ici ?
         passage_en_morse(texte);
         }
     
@@ -80,6 +86,7 @@ class CodageMorse{
         }
     }
 
+  // vr: cette fonction ne retourne pas de char* elle en affiche un ? mettez la void
     char* afficher_code_morse(){
         std::cout << code_morse << std::endl;
     }
@@ -113,7 +120,8 @@ class DecodageMorse{
     DecodageMorse(int duree_point): duree_point(duree_point){
     }
 
-    char* decoder_morse(const char* nom_du_fichier){
+  // vr: cette fonction doit retourner un char* ?
+  char* decoder_morse(const char* nom_du_fichier){
         int* code_binaire = decoder(nom_du_fichier);
         binaire_to_morse(code_binaire);
         int longueur_texte = code_morse.size();
@@ -221,7 +229,9 @@ class DecodageMorse{
         std::cout << std::endl;
         ofstream fichier(nom_fichier_a_ouvrir,ios::out);
         if (fichier){
-            for (int i=0;i<texte.size();i++){
+	  // vr: std::string::size renvoie un size_t il faut rester cohérent avec le type de l'indice
+	  // vr: for (int i=0;i<texte.size();i++){
+	  for (size_t i=0;i<texte.size();i++){
                 fichier << texte[i];
             }
             fichier.close();
@@ -239,3 +249,4 @@ class DecodageMorse{
     vector<vector<char>> code_morse;
     vector<char> texte;
 };
+*/

@@ -1,9 +1,12 @@
+// vr: quand vous utilisez du code d'Internet il faut citez l'auteur (regardez la licence)
+
 #include <cmath>
 #include <fstream>
 #include <iostream>
 #include"wav_encodage.h"
 
-#pragma once
+// vr: le pragma once sert à eviter l'inclusion multiple d'un fichier d'entête (les .h) lors de la compilation d'un fichier, il ne sert à rien dans un .cpp
+// vr: #pragma once
 
 using namespace std;
 
@@ -19,6 +22,7 @@ namespace little_endian_io
 }
 using namespace little_endian_io;
 
+// vr: votre fonction dit retourner un int mais ne retourne rien -
 int ecrire_fichier_wav(char* texte_en_morse, string nom_du_fichier, int duree_point)
 {
   ofstream f(nom_du_fichier, ios::binary );
